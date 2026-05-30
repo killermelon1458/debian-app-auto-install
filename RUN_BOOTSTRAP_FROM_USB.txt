@@ -1,0 +1,15 @@
+Zorin bootstrap command — find script on plugged-in USB and run it
+
+Use this AFTER Zorin is installed and you are logged into the new Zorin desktop.
+
+1. Plug in the flash drive.
+2. Open Terminal.
+3. Copy/paste this entire one-line command:
+
+SCRIPT="$(find "/media/$USER" "/run/media/$USER" -maxdepth 3 -type f -name "zorin-remote-bootstrap-v0.6.sh" 2>/dev/null | head -n 1)"; if [ -n "$SCRIPT" ]; then cd "$(dirname "$SCRIPT")" && bash ./zorin-remote-bootstrap-v0.6.sh; else echo "Could not find zorin-remote-bootstrap-v0.6.sh on the plugged-in flash drive."; fi
+
+Notes:
+- Do not run the script with sudo.
+- The script will ask for the Zorin password when it needs sudo.
+- The script should be in the root folder of the plugged-in flash drive.
+- Make sure the computer has internet before running it.
